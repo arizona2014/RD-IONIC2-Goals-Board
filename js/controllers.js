@@ -33,4 +33,4 @@ function ($scope, $stateParams) {
 function ($scope, $stateParams) {
 
 
-}])
+}]);
