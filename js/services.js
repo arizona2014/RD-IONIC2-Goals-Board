@@ -6,4 +6,8 @@ angular.module('app.services', [])
 
 .service('BlankService', [function(){
 
+}])
+
+.service('PouchService', [function(){
+  this.db = new PouchDB('my_database');
 }]);
