@@ -5,6 +5,8 @@ angular.module('app.controllers', [])
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
 
+  var db = new PouchDB('my_database');
+
   $scope.addButton = function(){
     console.log("Add button clicked");
   };
@@ -16,7 +18,7 @@ function ($scope, $stateParams) {
   $scope.deleteButton = function(){
     console.log("Delete button clicked");
   };
-  
+
 }])
 
 .controller('visualizeCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
