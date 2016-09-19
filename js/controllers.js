@@ -7,6 +7,7 @@ function ($scope, $rootScope, $stateParams, PouchService, $ionicModal) {
 
   var db = PouchService.db;
   $scope.goalData = {};
+  var _goals = [];
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/addGoal.html', {
@@ -20,7 +21,7 @@ function ($scope, $rootScope, $stateParams, PouchService, $ionicModal) {
     include_docs: true
   }).then(function(result) {
     $rootScope.goals = result.rows;
-    //console.log($rootScope.goals);
+    $scope.$apply();
   }).catch(function(err) {
     console.log(err);
   });
@@ -28,20 +29,52 @@ function ($scope, $rootScope, $stateParams, PouchService, $ionicModal) {
   // GOALS CONTROLLER CODE
 
   $scope.addButton = function(){
-    console.log("Add button clicked");
+    console.log("Add button clicked ");
     $scope.modal.show();
   };
 
-  $scope.editButton = function(){
-    console.log("Edit button clicked");
+  $scope.editButton = function(id){
+    console.log("Edit button clicked for " + id + " goal");
   };
 
-  $scope.deleteButton = function(){
-    console.log("Delete button clicked");
+  $scope.deleteButton = function(id){
+    console.log("Delete button clicked for " + id + " goal");
   };
 
   // GOALS CONTROLLER CODE
 
+  // ADD GOALS POPUP CODE
+
+  $scope.closeAddGoal = function(){
+    $scope.modal.hide();
+  };
+
+  $scope.doAddGoal = function(){
+
+    var timeStamp = String(new Date().getTime());
+    $scope.goalData["_id"] = timeStamp;
+    db.put(
+      $scope.goalData
+    ).then(function (response) {
+      console.log("saved goal")
+    }).catch(function (err) {
+      console.log(err);
+    });
+    $scope.goalData = {};
+
+    db.allDocs({
+      include_docs: true
+    }).then(function(result) {
+      $rootScope.goals = result.rows;
+      console.log($rootScope.goals);
+      $scope.modal.hide();
+    }).catch(function(err) {
+      console.log(err);
+    });
+
+  };
+
+  // ADD GOALS POPUP CODE
 
 }])
 
