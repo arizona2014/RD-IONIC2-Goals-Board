@@ -1,13 +1,13 @@
 <ion-view id="page2" title="Goals">
     <ion-content class="has-header" padding="true">
-        <div class="button-bar" id="goals-button-bar2">
-            <button ng-click="addButton();" class="button button-stable  button-block button-outline icon ion-plus" style="font-size:1px;" id="goals-button5"></button>
-            <button ng-click="editButton();" class="button button-stable  button-block button-outline icon ion-android-create" style="border-radius:5px 5px 5px 5px;" id="goals-button6"></button>
-            <button ng-click="deleteButton();" class="button button-stable  button-block button-outline icon ion-android-delete" id="goals-button7"></button>
-        </div>
+
         <div class="button-bar" id="goals-button-bar1"></div>
         <div style="width: 283px; height: 16px;" class="spacer"></div>
         <div style="" id="goals-list-item-container1" class="item item-body">
+            <div class="button-bar" id="goals-button-bar2">
+              <button ng-click="addButton();" class="button button-stable  button-block button-outline icon ion-plus" id="goals-button5"><span style="margin-left: 20px; font-size:20px">Add new GOAL</span></button>
+            </div>
+            <br />
             <form class="list" id="goals-form1">
                 <label style="" class="item item-input">
                     <i class="icon ion-search placeholder-icon"></i>
@@ -20,19 +20,24 @@
             <ion-list id="goals-list2">
                 <ion-list ng-repeat="goal in goals" id="goals-list3">
                     <ion-item style="" id="goals-list-item2" class="item-thumbnail-left">
-                        <h2>{{goal.name}}</h2>
-                        <p>{{goal.description}}</p>
-                        <div style="margin-top:0px;color:#000000;" id="visualize-markdown20"><p>Sub Goals</p></div>
-                        <ion-list id="visualize-list22">
-                          <ion-item style="" id="visualize-list-item24" class="item-thumbnail-left">
-                            <h2>Sub GOAL 1</h2>
-                          </ion-item>
-                          <ion-item style="" id="visualize-list-item25" class="item-thumbnail-left">
-                            <h2>Sub GOAL 2</h2>
-                          </ion-item>
-                        </ion-list>
+                        <div class="button-bar" id="goals-button-bar2">
+                          <button ng-click="editButton(goal.doc._id);" class="button button-stable  button-block button-outline icon ion-android-create" style="border-radius:5px 5px 5px 5px;" id="goals-button6"><span style="margin-left: 20px; font-size:20px">Edit this GOAL</span></button>
+                          <button ng-click="deleteButton(goal.doc._id);" class="button button-stable  button-block button-outline icon ion-android-delete" id="goals-button7"><span style="margin-left: 20px; font-size:20px">Delete this GOAL</span></button>
+                        </div>
+                        <h1>{{goal.doc.name}}</h1>
+                        <p>{{goal.doc.description}}</p>
+                        <div ng-show="goal.subgoals.length">
+                          <div style="margin-top:0px;color:#000000;" id="visualize-markdown20"><p>Sub Goals</p></div>
+                          <ion-list id="visualize-list22">
+                            <ion-item style="" id="visualize-list-item24" class="item-thumbnail-left">
+                              <h2>Sub GOAL 1</h2>
+                            </ion-item>
+                            <ion-item style="" id="visualize-list-item25" class="item-thumbnail-left">
+                              <h2>Sub GOAL 2</h2>
+                            </ion-item>
+                          </ion-list>
+                        </div>
                     </ion-item>
-
                 </ion-list>
             </ion-list>
             <div ng-show="!goals.length">No Goals yet baby !!!</div>
