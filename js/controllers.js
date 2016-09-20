@@ -1,8 +1,6 @@
 angular.module('app.controllers', [])
 
-.controller('goalsCtrl', ['$scope', '$rootScope', '$stateParams', 'PouchService', '$ionicModal', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
+.controller('goalsCtrl', ['$scope', '$rootScope', '$stateParams', 'PouchService', '$ionicModal',
 function ($scope, $rootScope, $stateParams, PouchService, $ionicModal) {
 
   var db = PouchService.db;
