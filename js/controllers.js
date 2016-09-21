@@ -6,6 +6,7 @@ function ($scope, $rootScope, $stateParams, PouchService, $ionicModal) {
   var db = PouchService.db;
   $scope.goalData = {};
   var _goals = [];
+  $scope.search = {};
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/addGoal.html', {
