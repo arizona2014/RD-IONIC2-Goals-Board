@@ -18,7 +18,7 @@
                 <p>All GOALS</p>
             </div>
             <ion-list id="goals-list2">
-                <ion-list ng-repeat="goal in goals" id="goals-list3">
+                <ion-list ng-repeat="goal in goals | filter:search " id="goals-list3">
                     <ion-item style="" id="goals-list-item2" class="item-thumbnail-left">
                         <div class="button-bar" id="goals-button-bar2">
                           <button ng-click="editButton(goal.doc._id);" class="button button-stable  button-block button-outline icon ion-android-create" style="border-radius:5px 5px 5px 5px;" id="goals-button6"><span style="margin-left: 20px; font-size:20px">Edit this GOAL</span></button>
