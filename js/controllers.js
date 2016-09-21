@@ -27,7 +27,6 @@ function ($scope, $rootScope, $stateParams, PouchService, $ionicModal) {
   // GOALS CONTROLLER CODE
 
   $scope.addButton = function(){
-    console.log("Add button clicked ");
     $scope.modal.show();
   };
 
