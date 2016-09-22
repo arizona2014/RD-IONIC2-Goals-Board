@@ -4,7 +4,7 @@
         <div class="button-bar" id="goals-button-bar1"></div>
         <div style="width: 283px; height: 16px;" class="spacer"></div>
         <div style="" id="goals-list-item-container1" class="item item-body">
-            <div class="button-bar" id="goals-button-bar2">
+            <div class="button-bar">
               <button ng-click="addButton();" class="button button-stable  button-block button-outline icon ion-plus" id="goals-button5"><span style="margin-left: 20px; font-size:20px">Add new GOAL</span></button>
             </div>
             <br />
@@ -20,7 +20,8 @@
             <ion-list id="goals-list2">
                 <ion-list ng-repeat="goal in goals | filter:search " id="goals-list3">
                     <ion-item style="" id="goals-list-item2" class="item-thumbnail-left">
-                        <div class="button-bar" id="goals-button-bar2">
+                        <div class="button-bar">
+                          <button ng-click="addSubButton();" class="button button-stable  button-block button-outline icon ion-plus" ><span style="margin-left: 20px; font-size:20px">Add new Subgoal</span></button>
                           <button ng-click="editButton(goal.doc._id);" class="button button-stable  button-block button-outline icon ion-android-create" style="border-radius:5px 5px 5px 5px;" id="goals-button6"><span style="margin-left: 20px; font-size:20px">Edit this GOAL</span></button>
                           <button ng-click="deleteButton(goal.doc._id);" class="button button-stable  button-block button-outline icon ion-android-delete" id="goals-button7"><span style="margin-left: 20px; font-size:20px">Delete this GOAL</span></button>
                         </div>
