@@ -11,7 +11,7 @@
             <form class="list" id="goals-form1">
                 <label style="" class="item item-input">
                     <i class="icon ion-search placeholder-icon"></i>
-                    <input placeholder="Search goals" ng-model="search" type="search">
+                    <input placeholder="Search goals" ng-model="search.doc.name" type="search">
                 </label>
             </form>
             <div style="margin-top:0px;color:#000000;" id="goals-markdown1">
@@ -26,14 +26,11 @@
                         </div>
                         <h1>{{goal.doc.name}}</h1>
                         <p>{{goal.doc.description}}</p>
-                        <div ng-show="goal.subgoals.length">
+                        <div ng-show="goal.doc.subgoals.length">
                           <div style="margin-top:0px;color:#000000;" id="visualize-markdown20"><p>Sub Goals</p></div>
-                          <ion-list id="visualize-list22">
-                            <ion-item style="" id="visualize-list-item24" class="item-thumbnail-left">
-                              <h2>Sub GOAL 1</h2>
-                            </ion-item>
-                            <ion-item style="" id="visualize-list-item25" class="item-thumbnail-left">
-                              <h2>Sub GOAL 2</h2>
+                          <ion-list  ng-repeat="sg in goal.doc.subgoals">
+                            <ion-item class="item-thumbnail-left">
+                              <h2>{{sg.name}}</h2>
                             </ion-item>
                           </ion-list>
                         </div>
