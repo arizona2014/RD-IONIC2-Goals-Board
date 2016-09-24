@@ -5,7 +5,6 @@ function ($scope, $rootScope, $stateParams, PouchService, $ionicModal) {
 
   var db = PouchService.db;
   $scope.goalData = {};
-  var _goals = [];
   $scope.search = undefined;
 
   // Create the login modal that we will use later
@@ -37,6 +36,23 @@ function ($scope, $rootScope, $stateParams, PouchService, $ionicModal) {
 
   $scope.deleteButton = function(id){
     console.log("Delete button clicked for " + id + " goal");
+  };
+
+  $scope.addSubButton = function(idGoal){
+    console.log("Subgoal button clicked for " + idGoal + " goal");
+    $rootScope.goals.map(function(item){
+      if(item.id === idGoal){
+        var subgoal = {};
+        subgoal.name = "subgoal 1";
+        if(item.doc.hasOwnProperty('subgoals')){
+          item.doc.subgoals.push(subgoal);
+        } else {
+          item.doc.subgoals = [];
+          item.doc.subgoals.push(subgoal);
+        }
+      }
+    });
+    console.log($rootScope.goals);
   };
 
   // GOALS CONTROLLER CODE
