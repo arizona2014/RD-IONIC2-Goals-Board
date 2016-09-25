@@ -15,16 +15,34 @@ function ($scope, $rootScope, $stateParams, PouchService, $ionicModal) {
     $scope.modal = modal;
   });
 
-  db.allDocs({
-    include_docs: true
-  }).then(function(result) {
-    $rootScope.goals = result.rows;
-    $scope.$apply();
-  }).catch(function(err) {
-    console.log(err);
-  });
 
   // GOALS CONTROLLER CODE
+
+  // Function to recuperate all PouchDB docs
+  $scope.getAllDocs = function(){
+    db.allDocs({
+      include_docs: true
+    }).then(function(result) {
+      $rootScope.goals = result.rows;
+      $scope.$apply();
+    }).catch(function(err) {
+      console.log(err);
+    });
+  }
+
+  $scope.getAllDocs();
+
+  // Function to save goals into PouchDB
+  $scope.saveGoals = function(goal){
+    db.put(
+      goal
+    ).then(function (response) {
+      console.log("goal ok")
+    }).catch(function (err) {
+      console.log(err);
+    });
+  }
+
 
   $scope.addButton = function(){
     $scope.modal.show();
@@ -39,7 +57,6 @@ function ($scope, $rootScope, $stateParams, PouchService, $ionicModal) {
   };
 
   $scope.addSubButton = function(idGoal){
-    console.log("Subgoal button clicked for " + idGoal + " goal");
     $rootScope.goals.map(function(item){
       if(item.id === idGoal){
         var subgoal = {};
@@ -52,7 +69,7 @@ function ($scope, $rootScope, $stateParams, PouchService, $ionicModal) {
         }
       }
     });
-    console.log($rootScope.goals);
+
   };
 
   // GOALS CONTROLLER CODE
@@ -67,24 +84,10 @@ function ($scope, $rootScope, $stateParams, PouchService, $ionicModal) {
 
     var timeStamp = String(new Date().getTime());
     $scope.goalData["_id"] = timeStamp;
-    db.put(
-      $scope.goalData
-    ).then(function (response) {
-      console.log("saved goal")
-    }).catch(function (err) {
-      console.log(err);
-    });
+    $scope.saveGoals($scope.goalData);
     $scope.goalData = {};
-
-    db.allDocs({
-      include_docs: true
-    }).then(function(result) {
-      $rootScope.goals = result.rows;
-      console.log($rootScope.goals);
-      $scope.modal.hide();
-    }).catch(function(err) {
-      console.log(err);
-    });
+    $scope.getAllDocs();
+    $scope.modal.hide();
 
   };
 
