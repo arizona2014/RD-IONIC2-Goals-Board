@@ -11,3 +11,7 @@ GoalsBoard is a IONIC mobile application which facilitate Goals management and v
 ## Motivation
 
 The project helps anyone who wants to create/manage a list of GOALS.
+
+## License
+
+MIT © [GoalsBoard](https://github.com/arizona2014/GoalsBoard)
